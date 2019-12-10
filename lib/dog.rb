@@ -18,12 +18,17 @@ class Dog
     end
     
     def self.find_by_name(name)
-      sql = "SELECT * FROM dogs WHERE name = ?"
+      sql = <<-SQL
+      "SELECT * FROM dogs WHERE name = ?"
+      SQL
       DB[:conn].execute(sql,name).map {|row| new_from_db(row)}.first
+      
     end
     
     def self.find_by_id(id)
-      sql = "SELECT * FROM dogs WHERE id = ?"
+      sql = <<-SQL
+      "SELECT * FROM dogs WHERE id = ?"
+      SQL
       DB[:conn].execute(sql,name).map {|row| new_from_db(row)}
     end
     
